@@ -1,11 +1,23 @@
 import 'package:flutter/material.dart';
 
 import 'package:brasileirao/pages/home_controller.dart';
+import 'package:brasileirao/pages/time_page.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   HomePage({super.key});
 
-  final controller = HomeController();
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  late HomeController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = HomeController();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +34,16 @@ class HomePage extends StatelessWidget {
               trailing: Text(
                 tabela[i].pontos.toString(),
               ),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => TimePage(
+                        key: Key(tabela[i].nome),
+                        time: tabela[i],
+                      ),
+                    ));
+              },
             );
           },
           separatorBuilder: (BuildContext context, int i) => const Divider(),
