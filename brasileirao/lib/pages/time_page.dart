@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:brasileirao/widgets/brasao.dart';
 import '../models/time.dart';
 import '../models/titulo.dart';
 import 'add_titulo_page.dart';
@@ -15,10 +16,14 @@ class TimePage extends StatefulWidget {
 class _TimePageState extends State<TimePage> {
   tituloPage() {
     Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (_) =>
-                AddTituloPage(time: widget.time, onSave: addTitulo)));
+      context,
+      MaterialPageRoute(
+        builder: (_) => AddTituloPage(
+          time: widget.time,
+          onSave: addTitulo,
+        ),
+      ),
+    );
   }
 
   addTitulo(Titulo titulo) {
@@ -69,7 +74,10 @@ class _TimePageState extends State<TimePage> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(24),
-                child: Image.network(widget.time.brasao),
+                child: Brasao(
+                  image: widget.time.brasao,
+                  width: 250,
+                ),
               ),
               Text(
                 'Pontos: ${widget.time.pontos}',

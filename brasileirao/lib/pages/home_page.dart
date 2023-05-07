@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:brasileirao/widgets/brasao.dart';
 import 'package:brasileirao/pages/home_controller.dart';
 import 'package:brasileirao/pages/time_page.dart';
 
@@ -29,7 +30,10 @@ class _HomePageState extends State<HomePage> {
           itemBuilder: (BuildContext context, int i) {
             final tabela = controller.tabela;
             return ListTile(
-              leading: Image.network(tabela[i].brasao),
+              leading: Brasao(
+                image: tabela[i].brasao,
+                width: 40,
+              ),
               title: Text(tabela[i].nome),
               trailing: Text(
                 tabela[i].pontos.toString(),
